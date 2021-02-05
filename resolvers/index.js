@@ -5,7 +5,7 @@ module.exports = {
 
   users: async () => {
     try {
-       const usersFetched = await User.find().sort({ points: -1 }).limit(5);
+       const usersFetched = await User.findOne().sort({ points: -1 }).limit(5);
         return usersFetched.map(user => {
             return { 
                 ...user._doc, 
@@ -19,6 +19,19 @@ module.exports = {
     
  },
 
+   getUser: async args => {
+    try {
+        const { email } = args;
+        const userFetched = await User.find({email: {$eq : email}});
+        console.log('userFetched',userFetched[0].points);
+        return userFetched[0];
+    }
+    catch (error) {
+        throw error
+    }
+    
+ },
+ 
   createUser: async args => {
   try {
     const { email, points } = args.user;

@@ -19,6 +19,7 @@ module.exports = buildSchema(`
   
   type Query {
     users:[User!]
+    getUser( email: String!): User
   }
   type Mutation {
     createUser(user:UserInput): User
