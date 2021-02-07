@@ -5,7 +5,7 @@ module.exports = {
 
   users: async () => {
     try {
-       const usersFetched = await User.findOne().sort({ points: -1 }).limit(5);
+       const usersFetched = await User.find().sort({ points: -1 }).limit(5);
         return usersFetched.map(user => {
             return { 
                 ...user._doc, 
